@@ -1,6 +1,11 @@
-<H1>To</H1>
-<ul>
-<% @tasks.each do |task|%>
-    <li><%= task.title%></li> 
-<% end %>
-</ul>
+<H1>To Do</H1>
+
+<% @tasks.each do |task| %>
+    <p>
+      <%= task.id %>
+      <%= task.title %>
+    </p>
+  <% end %>
+  
+
+
