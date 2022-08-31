@@ -9,6 +9,8 @@ class Task < ApplicationRecord
 
   before_create :set_slug
 
+  before_validation :set_title, if: :title_not_present
+
   private
 
     def set_slug
@@ -32,5 +34,17 @@ class Task < ApplicationRecord
       if slug_changed? && self.persisted?
         errors.add(:slug, t("task.slug.immutable"))
       end
+    end
+
+    def title_not_present
+      self.title.blank?
+    end
+
+    def set_title
+      self.title = "Pay electricity bill"
+    end
+
+    def print_set_title
+      puts self.title
     end
 end
