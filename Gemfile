@@ -59,3 +59,5 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-rails"
 end
+
+gem "bcrypt", "~> 3.1.13"
