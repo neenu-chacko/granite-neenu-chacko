@@ -61,3 +61,5 @@ group :development, :test do
 end
 
 gem "bcrypt", "~> 3.1.13"
+
+gem "simplecov", require: false, group: :test
