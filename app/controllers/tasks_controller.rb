@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
   before_action :load_task!, only: %i[show update destroy]
 
   def index
-    tasks = Task.all.as_json(include: { assigned_user: { only: %i[name id] } })
-    respond_with_json({ tasks: tasks })
+    tasks = policy_scope(Task)
+    tasks_with_assigned_user = tasks.as_json(include: { assigned_user: { only: %i[name id] } })
+    respond_with_json(tasks_with_assigned_user)
   end
 
   def create
@@ -16,15 +19,20 @@ class TasksController < ApplicationController
 
   def show
     # respond_with_json({ task: @task, assigned_user: @task.assigned_user })
-    render
+    # render
+    authorize @task
   end
 
   def update
+    authorize @task
+
     @task.update!(task_params)
     respond_with_success(t("successfully_created", entity: "Task"))
   end
 
   def destroy
+    authorize @task
+
     @task.destroy!
     respond_with_json
   end
