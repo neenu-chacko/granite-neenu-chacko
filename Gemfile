@@ -56,8 +56,12 @@ gem "react-rails"
 group :development, :test do
 
   # For code formatting and linting
+  gem "factory_bot_rails"
   gem "rubocop"
   gem "rubocop-rails"
+  # For auto-generating demo data
+  gem "faker"
+
 end
 
 gem "bcrypt", "~> 3.1.13"
