@@ -13,6 +13,7 @@ class Task < ApplicationRecord
   before_create :set_slug
 
   before_validation :set_title, if: :title_not_present
+  has_many :comments, dependent: :destroy
 
   private
 
