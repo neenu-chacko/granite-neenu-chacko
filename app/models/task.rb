@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  # MAX_TITLE_LENGTH = 125
-  # , length : {maximum : MAX_TITLE_LENGTH}
+  RESTRICTED_ATTRIBUTES = %i[title task_owner_id assigned_user_id]
+
+  enum progress: { pending: "pending", completed: "completed" }
+
   belongs_to :assigned_user, foreign_key: "assigned_user_id", class_name: "User"
   belongs_to :task_owner, foreign_key: "task_owner_id", class_name: "User"
 
