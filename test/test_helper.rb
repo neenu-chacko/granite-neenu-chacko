@@ -31,4 +31,14 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  # previous code
+
+  def headers(user, options = {})
+    {
+      Accept: "application/json",
+      "Content_Type" => "application/json",
+      "X-Auth-Token" => user.authentication_token,
+      "X-Auth-Email" => user.email
+    }.merge(options)
+  end
 end

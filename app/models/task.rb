@@ -16,7 +16,7 @@ class Task < ApplicationRecord
 
   before_create :set_slug
 
-  before_validation :set_title, if: :title_not_present
+  # before_validation :set_title, if: :title_not_present
   has_many :comments, dependent: :destroy
 
   private
@@ -44,9 +44,13 @@ class Task < ApplicationRecord
       end
     end
 
-    def title_not_present
-      self.title.blank?
+    def title_present
+      self.title.present?
     end
+
+    # def title_not_present
+    #   self.title.blank?
+    # end
 
     def set_title
       self.title = "Pay electricity bill"
