@@ -74,3 +74,8 @@ gem "sidekiq-cron"
 
 # For opening mails in development env
 gem "letter_opener", group: :development
+
+# PDF generation gem
+gem "wicked_pdf"
+# wicked_pdf uses the following binary
+gem "wkhtmltopdf-binary"

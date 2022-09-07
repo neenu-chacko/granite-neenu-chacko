@@ -2,6 +2,10 @@ import axios from "axios";
 
 const list = () => axios.get("/tasks");
 const show = slug => axios.get(`/tasks/${slug}`);
+const generatePdf = () => axios.post("/tasks/report", {});
+
+const download = () =>
+  axios.get("/tasks/report/download", { responseType: "blob" });
 
 const create = payload =>
   axios.post("/tasks/", {
@@ -19,6 +23,6 @@ const destroy = ({ slug, quiet }) => {
   return axios.delete(path);
 };
 
-const tasksApi = { list, show, create, update, destroy };
+const tasksApi = { list, show, create, update, destroy, generatePdf, download };
 
 export default tasksApi;
