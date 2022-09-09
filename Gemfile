@@ -8,7 +8,7 @@ ruby "3.0.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 6.1.4", ">= 6.1.4.1"
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# gem "sqlite3", "~> 1.4"
 # Use Puma as the app server
 gem "puma", "~> 5.0"
 # Use SCSS for stylesheets
@@ -78,4 +78,6 @@ gem "letter_opener", group: :development
 # PDF generation gem
 gem "wicked_pdf"
 # wicked_pdf uses the following binary
+gem "pg", group: [:production]
+gem "sqlite3", "~> 1.4", group: [:development, :test]
 gem "wkhtmltopdf-binary"
